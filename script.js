@@ -12,6 +12,8 @@
 // Else, game is a draw
 
 const CHOICES = ["rock", "paper", "scissors"];
+playerScore = 0;
+computerScore = 0;
 
 // Get a random int up to a max int (starting at 0)
 function getRandomInt(maxInt) {
@@ -23,3 +25,14 @@ function getComputerChoice() {
   return CHOICES[getRandomInt(CHOICES.length)];
 }
   
+// ask the player for their choice, returns the player's choice. Repeats until
+// a valid choice is entered
+function getPlayerChoice() {
+  choice = prompt(`[Rock, Paper, Scissors] Please enter your choice: `);
+  validChoice(choice) ?
+  
+}
+
+function validChoice(string) {
+  return CHOICES.includes(string.toLowerCase());
+}
