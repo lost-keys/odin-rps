@@ -28,11 +28,28 @@ function getComputerChoice() {
 // ask the player for their choice, returns the player's choice. Repeats until
 // a valid choice is entered
 function getPlayerChoice() {
-  choice = prompt(`[Rock, Paper, Scissors] Please enter your choice: `);
-  validChoice(choice) ?
-  
+  return prompt(`[Rock, Paper, Scissors] Please enter your choice: `);
 }
 
 function validChoice(string) {
   return CHOICES.includes(string.toLowerCase());
 }
+
+// compare the player and computer choices together and declare a winner or a draw
+function playRound(playerChoice, computerChoice) {
+  let message = function (result, playerChoice, computerChoice) {
+    console.log(`You ${result}! ${playerChoice} beats ${computerChoice}`);
+  }
+
+  if (playerChoice === "rock" && computerChoice === "scissors") {
+    console.log(message("win", playerChoice, computerChoice));
+  } else if (playerChoice === "paper" && computerChoice === "rock") {
+    console.log(message("win", playerChoice, computerChoice));
+  } else if (playerChoice === "scissors" && computerChoice === "paper") {
+    console.log(message("win", playerChoice, computerChoice));
+  } else {
+    console.log("It's a draw")
+  }
+}
+
+
