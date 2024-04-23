@@ -28,11 +28,18 @@ function getComputerChoice() {
 // ask the player for their choice, returns the player's choice. Repeats until
 // a valid choice is entered
 function getPlayerChoice() {
-  return prompt(`[Rock, Paper, Scissors] Please enter your choice: `);
+  let choice ="";
+  message = `[Rock, Paper, Scissors] Please enter your choice: `
+
+  while (!validChoice(choice)) {
+    choice = prompt(message);
+  }
+
+  return choice;
 }
 
 function validChoice(string) {
-  return CHOICES.includes(string.toLowerCase());
+  return CHOICES.includes(string.toLowerCase())
 }
 
 // compare the player and computer choices together and declare a winner or a draw
