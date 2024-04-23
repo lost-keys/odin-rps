@@ -48,15 +48,15 @@ function playRound(playerChoice, computerChoice) {
     console.log(`You ${result}! ${playerChoice} beats ${computerChoice}`);
   }
 
-  if (playerChoice === "rock" && computerChoice === "scissors") {
+  if (playerChoice === computerChoice) {
+    console.log("It's a draw.");
+  } else if (playerChoice === "rock" && computerChoice === "scissors") {
     console.log(message("win", playerChoice, computerChoice));
   } else if (playerChoice === "paper" && computerChoice === "rock") {
     console.log(message("win", playerChoice, computerChoice));
   } else if (playerChoice === "scissors" && computerChoice === "paper") {
     console.log(message("win", playerChoice, computerChoice));
   } else {
-    console.log("It's a draw")
+    console.log(message("lose", playerChoice, computerChoice));
   }
 }
-
-
