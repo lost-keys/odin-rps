@@ -42,21 +42,68 @@ function validChoice(string) {
   return CHOICES.includes(string.toLowerCase())
 }
 
-// compare the player and computer choices together and declare a winner or a draw
+// compare the player and computer choices and return the result (win, lose, draw)
 function playRound(playerChoice, computerChoice) {
-  let message = function (result, playerChoice, computerChoice) {
-    console.log(`You ${result}! ${playerChoice} beats ${computerChoice}`);
+  if (playerChoice === computerChoice) {
+    return "draw";
+  } else if (
+    playerChoice === "rock" && computerChoice === "scissors" ||
+    playerChoice === "paper" && computerChoice === "rock" ||
+    playerChoice === "scissors" && computerChoice === "paper"
+  ){
+    return `You win! ${playerChoice} beats ${computerChoice}.`;
+  } else {
+    return `You lose! ${computerChoice} beats ${playerChoice}.`;
+  }
+}
+
+// adjust scores based on whether the player won or lost the round.
+function adjustScores(roundResult) {
+  if (roundResult.includes("draw")) {
+    return;
+  } else if (roundResult.includes("win")) {
+    playerScore += 1;
+  } else {
+    computerScore += 1;
+  }
+}
+
+// compare player scores and return the winner
+function getResults() {
+  if (playerScore > computerScore) {
+    return "player";
+  } else if (computerScore > playerScore) {
+    return "computer";
+  } else {
+    return "draw";
+  }
+}
+
+// display the final game results (win lose or draw), prints the final score
+function showGameResults() {
+  result = getResults()
+
+  switch(result) {
+    case "player":
+      console.log(`You win!!! [player: ${playerScore} || computer: ${computerScore}]`);
+      break;
+    case "computer":
+      console.log(`You lose... [player: ${playerScore} || computer: ${computerScore}]`);
+      break;
+    default:
+      console.log(`It's a draw... [player: ${playerScore} || computer: ${computerScore}]`);
+      break;
+  }
+}
+
+function playGame(rounds = 5) {
+  for(let i = 0; i < rounds; i++) {
+    playerChoice = getPlayerChoice();
+    computerChoice = getComputerChoice();
+    let roundResult = playRound(playerChoice, computerChoice);
+    console.log(roundResult);
+    adjustScores(roundResult);
   }
 
-  if (playerChoice === computerChoice) {
-    console.log("It's a draw.");
-  } else if (playerChoice === "rock" && computerChoice === "scissors") {
-    console.log(message("win", playerChoice, computerChoice));
-  } else if (playerChoice === "paper" && computerChoice === "rock") {
-    console.log(message("win", playerChoice, computerChoice));
-  } else if (playerChoice === "scissors" && computerChoice === "paper") {
-    console.log(message("win", playerChoice, computerChoice));
-  } else {
-    console.log(message("lose", playerChoice, computerChoice));
-  }
+  showGameResults();
 }
