@@ -2,3 +2,29 @@ body {
   background-color: #2d2d2d;
   height: 100vh;
 }
+
+#container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+button {
+  padding: 10px;
+  background: transparent;
+  border: 2px solid white;
+  color: white;
+  font-weight: bold;
+  min-width: 100px;
+}
+
+button:hover {
+    border-color: yellow;
+    color: yellow;
+}
+
+button:active {
+  scale: .97;
+}

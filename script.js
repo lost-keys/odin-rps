@@ -11,6 +11,16 @@
 // If playerChoice is "scissors" and computerChoice is "rock" player loses
 // Else, game is a draw
 
+let container = document.querySelector("#container");
+
+container.addEventListener("click", (e) => {
+  let target = e.target;
+
+  result = playRound(target.id, getComputerChoice());
+  console.log(result);
+
+});
+
 const CHOICES = ["rock", "paper", "scissors"];
 playerScore = 0;
 computerScore = 0;
