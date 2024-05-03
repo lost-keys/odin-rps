@@ -95,15 +95,3 @@ function showGameResults() {
       break;
   }
 }
-
-function playGame(rounds = 5) {
-  for(let i = 0; i < rounds; i++) {
-    playerChoice = getPlayerChoice();
-    computerChoice = getComputerChoice();
-    let roundResult = playRound(playerChoice, computerChoice);
-    console.log(roundResult);
-    adjustScores(roundResult);
-  }
-
-  showGameResults();
-}
