@@ -11,19 +11,21 @@
 // If playerChoice is "scissors" and computerChoice is "rock" player loses
 // Else, game is a draw
 
+const CHOICES = ["rock", "paper", "scissors"];
+playerScore = 0;
+computerScore = 0;
+
 let container = document.querySelector("#container");
 
 container.addEventListener("click", (e) => {
   let target = e.target;
 
-  result = playRound(target.id, getComputerChoice());
-  console.log(result);
+  if (CHOICES.includes(target.id)) {
+    result = playRound(target.id, getComputerChoice());
+    console.log(result);
+  }
 
 });
-
-const CHOICES = ["rock", "paper", "scissors"];
-playerScore = 0;
-computerScore = 0;
 
 // Get a random int up to a max int (starting at 0)
 function getRandomInt(maxInt) {
