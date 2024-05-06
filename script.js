@@ -12,19 +12,29 @@
 // Else, game is a draw
 
 const CHOICES = ["rock", "paper", "scissors"];
-playerScore = 0;
-computerScore = 0;
+let playerScore = 0;
+let computerScore = 0;
 
-let container = document.querySelector("#container");
+const container = document.querySelector("#container");
+const roundResult = document.querySelector("#roundResult");
+const currentPlayerScore = document.querySelector("#playerScore");
+const currentComputerScore = document.querySelector("#computerScore");
 
 container.addEventListener("click", (e) => {
   let target = e.target;
 
   if (CHOICES.includes(target.id)) {
     result = playRound(target.id, getComputerChoice());
-    console.log(result);
+    roundResult.textContent = result;
+    adjustScores(result);
+    currentPlayerScore.textContent = playerScore;
+    currentComputerScore.textContent = computerScore;
   }
 
+  if (playerScore === 5 || computerScore === 5) {
+    showGameResults();
+    resetScores();
+  }
 });
 
 // Get a random int up to a max int (starting at 0)
@@ -91,19 +101,26 @@ function getResults() {
   }
 }
 
+function resetScores() {
+  playerScore = 0;
+  computerScore = 0;
+  currentPlayerScore.textContent = playerScore;
+  currentComputerScore.textContent = computerScore;
+}
+
 // display the final game results (win lose or draw), prints the final score
 function showGameResults() {
   result = getResults()
 
   switch(result) {
     case "player":
-      console.log(`You win!!! [player: ${playerScore} || computer: ${computerScore}]`);
+      alert(`You win!!! [player: ${playerScore} || computer: ${computerScore}]`);
       break;
     case "computer":
-      console.log(`You lose... [player: ${playerScore} || computer: ${computerScore}]`);
+      alert(`You lose... [player: ${playerScore} || computer: ${computerScore}]`);
       break;
     default:
-      console.log(`It's a draw... [player: ${playerScore} || computer: ${computerScore}]`);
+      alert(`It's a draw... [player: ${playerScore} || computer: ${computerScore}]`);
       break;
   }
 }
